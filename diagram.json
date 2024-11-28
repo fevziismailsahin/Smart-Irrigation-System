@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "author": "Fevzi İsmail Şahin",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 55.94,
+      "left": -73.1,
+      "rotate": 90,
+      "attrs": {}
+    },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -66.9, "left": 177, "attrs": {} },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot2",
+      "top": -91,
+      "left": -77.8,
+      "attrs": { "travelLength": "30" }
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 259.4, "left": 86.4, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 258,
+      "left": 265.8,
+      "rotate": 90,
+      "attrs": { "color": "red" }
+    },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": 221.56, "left": 240, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": 307.2, "left": 239.4, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "pot2:VCC", "esp:5V", "red", [ "h-38.4" ] ],
+    [ "pot2:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "pot2:SIG", "esp:34", "green", [ "h-28.8", "v104.8", "h124.8" ] ],
+    [ "dht1:SDA", "esp:14", "green", [ "v57.6", "h-249.5" ] ],
+    [ "relay1:GND", "esp:GND.2", "black", [ "h0" ] ],
+    [ "relay1:VCC", "esp:3V3", "red", [ "h0", "v-163.2" ] ],
+    [ "relay1:IN", "esp:2", "green", [ "h0" ] ],
+    [ "led1:C", "vcc1:VCC", "green", [ "h0" ] ],
+    [ "relay1:COM", "led1:A", "green", [ "h0" ] ],
+    [ "relay1:NO", "gnd1:GND", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
